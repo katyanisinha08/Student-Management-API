@@ -1,0 +1,72 @@
+{
+	"info": {
+		"name": "Student Management REST API",
+		"description": "A highly professional CRUD API with validation, filtering, and pagination.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Get All Students (With Pagination & Filtering)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/students?page=1&limit=5&course=Computer",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "students"],
+					"query": [
+						{ "key": "page", "value": "1" },
+						{ "key": "limit", "value": "5" },
+						{ "key": "course", "value": "Computer" }
+					]
+				}
+			}
+		},
+		{
+			"name": "2. Create Student (POST)",
+			"request": {
+				"method": "POST",
+				"header": [{ "key": "Content-Type", "value": "application/json" }],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"David Kumar\",\n    \"age\": 23,\n    \"course\": \"Electrical Engineering\"\n}"
+				},
+				"url": { "raw": "http://localhost:3000/api/students", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "students"] }
+			}
+		},
+		{
+			"name": "3. Update Student (PUT)",
+			"request": {
+				"method": "PUT",
+				"header": [{ "key": "Content-Type", "value": "application/json" }],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Alice Sharma Updated\",\n    \"age\": 21,\n    \"course\": \"Computer Science\"\n}"
+				},
+				"url": { "raw": "http://localhost:3000/api/students/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "students", "1"] }
+			}
+		},
+		{
+			"name": "4. Delete Student (DELETE)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": { "raw": "http://localhost:3000/api/students/2", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "students", "2"] }
+			}
+		},
+		{
+			"name": "5. Test Validation Error (400 Bad Request)",
+			"request": {
+				"method": "POST",
+				"header": [{ "key": "Content-Type", "value": "application/json" }],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"\",\n    \"age\": -5\n}"
+				},
+				"url": { "raw": "http://localhost:3000/api/students", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "students"] }
+			}
+		}
+	]
+}

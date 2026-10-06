@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar (अब यहाँ से नीचे वाला लॉगआउट बटन हटा दिया गया है ताकि स्क्रीन से बाहर न जाए) -->
+    <div class="sidebar">
+        <div class="sidebar-top">
+            <h2>🎓 Student Management</h2>
+            <a href="#" class="nav-link active" data-section="dashboard">🏠 Dashboard</a>
+            <a href="#" class="nav-link" data-section="students">👥 All Students</a>
+            <a href="#" class="nav-link" data-section="cse-students">💻 CSE Students</a>
+            <a href="#" class="nav-link" data-section="ece-students">⚡ ECE Students</a>
+            <a href="#" class="nav-link" data-section="mech-students">⚙️ Mechanical Students</a>
+            <a href="#" class="nav-link" data-section="civil-students">🏗️ Civil Students</a>
+            <a href="#" class="nav-link" data-section="aiml-students">🤖 AIML Students</a>
+            <a href="#" class="nav-link" data-section="aids-students">📊 AI-DS Students</a>
+            <a href="#" class="nav-link" data-section="blockchain-students">⛓️ Blockchain Students</a>
+            <a href="#" class="nav-link" data-section="cyber-students">🛡️ Cyber Security Students</a>
+            <a href="#" class="nav-link" data-section="add-student">➕ Add Student</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search students..." onkeyup="searchStudents()">
+            </div>
+            <!-- यहाँ यूजर प्रोफाइल के साथ लॉगआउट बटन सेट कर दिया गया है -->
+            <div class="user-profile" style="display: flex; align-items: center; gap: 15px;">
+                <button onclick="logout()" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold;">Logout</button>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div class="avatar" id="profile-avtar">G</div>
+                    <span id="profile-name" style="font-weight: 600;">Gaurav</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 1. DASHBOARD SECTION -->
+        <div id="dashboard-section" class="content-section">
+            <div class="welcome-banner">
+                <h1>Welcome Back!</h1>
+                <p>Manage your students efficiently.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <p>Total Students</p>
+                    <h3 id="total-count">0</h3>
+                </div>
+                <div class="stat-card">
+                    <p>CSE Students</p>
+                    <h3 id="cse-count">0</h3>
+                </div>
+                <div class="stat-card">
+                    <p>ECE Students</p>
+                    <h3 id="ece-count">0</h3>
+                </div>
+                <div class="stat-card">
+                    <p>Mechanical</p>
+                    <h3 id="mech-count">0</h3>
+                </div>
+                <div class="stat-card">
+                    <p>Civil</p>
+                    <h3 id="civil-count">0</h3>
+                </div>
+                <div class="stat-card">
+                    <p>AIML</p>
+                    <h3 id="aiml-count">0</h3>
+                </div>
+                <div class="stat-card">
+                    <p>AI-DS</p>
+                    <h3 id="aids-count">0</h3>
+                </div>
+                <div class="stat-card">
+                    <p>Blockchain</p>
+                    <h3 id="blockchain-count">0</h3>
+                </div>
+                <div class="stat-card">
+                    <p>Cyber Security</p>
+                    <h3 id="cyber-count">0</h3>
+                </div>
+            </div>
+
+            <div class="promo-banner">
+                <div class="promo-text">
+                    <h2>Keep Track. Stay Organized.</h2>
+                    <p>Add, view, update and manage student records easily.</p>
+                    <button class="btn-green" onclick="switchSection('students')">View All Students →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. STUDENTS LIST SECTION -->
+        <div id="students-section" class="content-section" style="display: none;">
+            <div class="card">
+                <h3 id="table-title">All Students List</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Enrollment No</th>
+                            <th>Course</th>
+                            <th>Semester</th>
+                            <th>Branch</th>
+                            <th>Scholar No</th>
+                            <th>Phone No</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-table-body">
+                        <!-- Dynamic Data -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 3. ADD STUDENT SECTION -->
+        <div id="add-student-section" class="content-section" style="display: none;">
+            <div class="card" style="max-width: 600px; margin: auto;">
+                <h3>Add New Student</h3>
+                <form id="add-student-form">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="student-name" required>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Enrollment No *</label>
+                            <input type="text" id="student-enrollment" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Course *</label>
+                            <input type="text" id="student-course" value="B.TECH" required>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Semester *</label>
+                            <input type="number" id="student-semester" value="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Branch *</label>
+                            <select id="student-branch" required>
+                                <option value="">Select Branch</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Civil">Civil</option>
+                                <option value="AIML">AIML</option>
+                                <option value="AI-DS">AI-DS</option>
+                                <option value="Blockchain">Blockchain</option>
+                                <option value="Cyber Security">Cyber Security</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Scholar No *</label>
+                            <input type="text" id="student-scholarno" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone No *</label>
+                            <input type="text" id="student-phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" id="student-email" required>
+                    </div>
+                    <button type="submit" class="btn-green">Add Student</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 4. EDIT STUDENT SECTION -->
+        <div id="edit-student-section" class="content-section" style="display: none;">
+            <div class="card" style="max-width: 600px; margin: auto;">
+                <h3>Edit Student Details</h3>
+                <form id="edit-student-form">
+                    <input type="hidden" id="edit-student-id">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="edit-name" required>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Enrollment No *</label>
+                            <input type="text" id="edit-enrollment" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Course *</label>
+                            <input type="text" id="edit-course" required>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Semester *</label>
+                            <input type="number" id="edit-semester" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Branch *</label>
+                            <select id="edit-branch" required>
+                                <option value="">Select Branch</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ECE">ECE</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Civil">Civil</option>
+                                <option value="AIML">AIML</option>
+                                <option value="AI-DS">AI-DS</option>
+                                <option value="Blockchain">Blockchain</option>
+                                <option value="Cyber Security">Cyber Security</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Scholar No *</label>
+                            <input type="text" id="edit-scholarno" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone No *</label>
+                            <input type="text" id="edit-phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" id="edit-email" required>
+                    </div>
+                    <button type="submit" class="btn-green">Update Student</button>
+                    <button type="button" onclick="switchSection('students')" class="btn-green"
+                        style="background: #6c757d; margin-left: 10px;">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

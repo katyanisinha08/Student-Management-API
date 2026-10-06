@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samrat Ashok Technological Institute (SATI)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 2 सेकंड का स्मूथ फुल-स्क्रीन अपीयरेंस इफ़ेक्ट */
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            opacity: 0;
+            transform: scale(0.98);
+            animation: smoothFullDisplay 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes smoothFullDisplay {
+            0% {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Top Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text h1 {
+            font-size: 16px;
+            color: #1b5e20;
+            font-weight: bold;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-login {
+            background-color: #1b5e20;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #2e7d32;
+        }
+
+        /* Hero Section - यहाँ आपकी अपनी स्क्रीनशॉट वाली इमेज सेट है */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('college.png');
+            background-size: cover;
+            background-position: center;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero-subtitle {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #a5d6a7;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .hero-content h2 {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 15px;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        .quote-badge {
+            position: absolute;
+            bottom: 30px;
+            right: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
+            font-size: 13px;
+            color: #fff;
+        }
+
+        /* Features Container */
+        .features-container {
+            display: flex;
+            justify-content: center;
+            padding: 35px 50px;
+            background: #ffffff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin: 40px 80px 0 80px;
+            border-radius: 12px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 10px;
+        }
+
+        .feature-icon {
+            font-size: 38px;
+            background: #e8f5e9;
+            padding: 18px;
+            border-radius: 12px;
+        }
+
+        .feature-text h4 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .feature-text p {
+            font-size: 14.5px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* About Institute Section */
+        .about-section {
+            display: flex;
+            padding: 60px 50px;
+            gap: 40px;
+            align-items: center;
+            background: #f8f9fa;
+        }
+
+        .about-left {
+            flex: 1.2;
+        }
+
+        .about-left .subtitle {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #2e7d32;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .about-left h3 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .about-left p {
+            font-size: 13.5px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .about-center {
+            flex: 1.5;
+        }
+
+        .about-center img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .about-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stat-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .stat-icon {
+            font-size: 20px;
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .stat-info h5 {
+            font-size: 15px;
+            color: #1b5e20;
+            font-weight: bold;
+        }
+
+        .stat-info p {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Header -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-text">
+                <h1>Samrat Ashok Technological Institute (SATI)</h1>
+                <p>Vidisha (M.P.) | A Grant-in-Aid Autonomous Institute</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="login.html" class="btn-login">🔒 User Login</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-subtitle">— STUDENT MANAGEMENT SYSTEM</div>
+            <h2>Empowering Education, Simplifying Management</h2>
+            <p>A unified platform to manage student data, academic details, departments and institutional activities efficiently at Samrat Ashok Technological Institute (SATI).</p>
+        </div>
+        <div class="quote-badge">
+            "Quality Education for a Better Tomorrow" — SATI, Vidisha
+        </div>
+    </section>
+
+    <!-- Features Container -->
+    <div class="features-container">
+        <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <div class="feature-text">
+                <h4>Student Management Module</h4>
+                <p>Comprehensive system designed to seamlessly <b>Add</b> new student profiles, <b>Update</b> existing academic/personal details, <b>View</b> complete student directories, and securely <b>Delete</b> records when necessary.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Institute Section -->
+    <section class="about-section">
+        <div class="about-left">
+            <div class="subtitle">— ABOUT INSTITUTE</div>
+            <h3>About Samrat Ashok Technological Institute (SATI)</h3>
+            <p>Samrat Ashok Technological Institute (SATI) is a prestigious Grant-in-Aid Autonomous Engineering College established in 1960 by Maharaja Jiwajirao Education Society, located at Vidisha (M.P.).</p>
+            <p>Approved by AICTE and affiliated to RGPV, Bhopal, the institution offers various undergraduate and postgraduate programs, fostering technical excellence, professional ethics, and holistic student development.</p>
+        </div>
+        <div class="about-center">
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop" alt="Classroom Teaching">
+        </div>
+        <div class="about-right">
+            <div class="stat-box">
+                <div class="stat-icon">🏛️️</div>
+                <div class="stat-info">
+                    <h5>6+</h5>
+                    <p>Departments</p>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">🎓</div>
+                <div class="stat-info">
+                    <h5>Thousands</h5>
+                    <p>Students</p>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">📅</div>
+                <div class="stat-info">
+                    <h5>1960</h5>
+                    <p>Established</p>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-info">
+                    <h5>NBA & NAAC</h5>
+                    <p>Accredited</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
