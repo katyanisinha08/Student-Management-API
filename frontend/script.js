@@ -108,7 +108,7 @@ function switchSection(sectionName) {
 // --- 2. डेटा फेच करना और डैशबोर्ड अपडेट करना ---
 async function fetchStudents() {
     try {
-        const response = await fetch('http://localhost:3000/api/students');
+        const response = await fetch('/api/students');
         const resultData = await response.json();
 
         if (Array.isArray(resultData)) {
@@ -256,7 +256,7 @@ if (addStudentForm) {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/api/students', {
+            const response = await fetch('/api/students', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newStudent)
@@ -311,7 +311,7 @@ if (editStudentForm) {
         };
 
         try {
-            const response = await fetch(`http://localhost:3000/api/students/${studentId}`, {
+            const response = await fetch(`api/students/${studentId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedData)
@@ -337,7 +337,7 @@ if (editStudentForm) {
 async function deleteStudent(id) {
     if (!confirm("क्या आप वाकई इसे डिलीट करना चाहते हैं?")) return;
     try {
-        const response = await fetch(`http://localhost:3000/api/students/${id}`, { method: 'DELETE' });
+        const response = await fetch(`/api/students/${id}`, { method: 'DELETE' });
         const result = await response.json();
 
         if (response.ok) {
