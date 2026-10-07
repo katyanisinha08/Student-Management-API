@@ -10,14 +10,16 @@ const app = express();
 // Built-in Middleware for parsing JSON requests
 app.use(express.json());
 //Frontend folder ko serve krne k liye
-app.use('/frontend',express.static(path.join(__dirname, '../frontend')));
-
+app.use(express.static(path.join(__dirname, '../frontend')));
 // Custom Logger Middleware
 app.use(requestLogger);
 
 // Mount Routes
 app.use('/api/students', studentRoutes);
-
+// मुख्य पन्ने पर वेलकम पेज दिखाने के लिए रूट
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/welcome.html')); 
+  });
 // Handle Undefined Routes (404)
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
