@@ -1,3 +1,4 @@
+require('dotenv').config();
 // Entry point of the application
 const app = require('./src/app');
 
